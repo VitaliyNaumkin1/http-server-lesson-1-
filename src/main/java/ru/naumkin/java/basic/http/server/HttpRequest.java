@@ -1,5 +1,8 @@
 package ru.naumkin.java.basic.http.server;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +11,7 @@ public class    HttpRequest {
     private String uri;
     private HttpMethod method;
     private Map<String, String> parameters;
+    private final Logger logger = LogManager.getLogger(HttpRequest.class.getName());
 
     public String getUri() {
         return uri;
@@ -16,6 +20,7 @@ public class    HttpRequest {
     public HttpMethod getMethod() {
         return method;
     }
+
 
     public HttpRequest(String rawRequest) {
         this.rawRequest = rawRequest;
@@ -47,7 +52,7 @@ public class    HttpRequest {
         if (showRawRequest) {
             System.out.println(rawRequest);
         }
-        System.out.println("URI: " + uri);
-        System.out.println("HTTP METHOD: " + method);
+        logger.info("URI: " + uri);
+        logger.info("HTTP METHOD: " + method);
     }
 }
