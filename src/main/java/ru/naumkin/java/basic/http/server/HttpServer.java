@@ -33,6 +33,7 @@ public class HttpServer {
                         int n = socket.getInputStream().read(buffer);
                         String rawRequest = new String(buffer, 0, n);
                         HttpRequest httpRequest = new HttpRequest(rawRequest);
+                        httpRequest.printInfo(false);
                         dispatcher.execute(httpRequest, socket.getOutputStream());
                     } catch (IOException e) {
                         logger.error(e);
